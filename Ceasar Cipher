@@ -1,0 +1,25 @@
+import cld2
+encrypted_input = raw_input("Enter the encrypted text :")
+shift = 1
+
+def decrypt(shift):
+    for i, ascii_value in enumerate (encrypted_input):
+        ascii_value += shift                    #ascii range 33 to 126
+        if int(ascii_value) > 126:
+            ascii_value -= 94
+        decrypted_char = chr(ascii_value)
+        decrypted_text.append(decrypted_char)
+    return (decrypted_text)
+
+def plaintextcheck(decrypted_text):
+    decrypted_text.encode('utf-8')
+    isreliable, textbytesfound, details = cld.detect(decrypted_text)  #uses cld to detect if the language is english
+    if details([0][0]) == 'english':
+        print decrypted_text.decode('utf-8')                          #prints the string if the language is detected as english
+
+
+while (shift < 93):
+    plaintextcheck(decrypt(shift))
+    shift += 1
+#test text
+#qPbqr EBG Nhgb
