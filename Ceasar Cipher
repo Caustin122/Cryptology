@@ -4,9 +4,9 @@ shift = 1
 def decrypt(shift):
     decrypted_text = ""
     for i, encrypted_char in enumerate (encrypted_input):
-        ascii_value = int(ord(encrypted_char)) + shift                   #ascii range 33 to 126
-        if ascii_value > 126:
-            ascii_value = int(ascii_value) - 94
+        ascii_value = int(ord(encrypted_char)) - shift                   #ascii range 33 to 126
+        if ascii_value < 32:
+            ascii_value = int(ascii_value) + 94
         decrypted_char = chr(ascii_value)
         decrypted_text = decrypted_text + decrypted_char
     return (decrypted_text)
@@ -18,7 +18,7 @@ def plaintextcheck(decrypted_text):
         print decrypted_text.decode('utf-8')
 
 
-while (shift < 93):
+while (shift < 95):
     #plaintextcheck(decrypt(shift))
     print(decrypt(shift))
     shift += 1
