@@ -2,36 +2,41 @@
 #
 # Chris Kalahiki
 
-# the alphabet
+# Alphabet goes here
 ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\|;:'\",<.>/? "
-METHOD = 1
-shift = 1
 
+# Read in the dictionary.txt file
+DICT = open("dictionary.txt", "r")
+DICT = DICT.read()
+
+# Encrypt plaintext based on provided shift number
 def encrypt(plaintext, shift):
     shifted_alphabet = ALPHABET[shift:] + ALPHABET[:shift]
     table = str.maketrans(ALPHABET, shifted_alphabet)
     return plaintext.translate(table)
 
+# Decrypt ciphertext based on provided shift number
 def decrypt(ciphertext, shift):
     shifted_alphabet = ALPHABET[shift:] + ALPHABET[:shift]
     table = str.maketrans(shifted_alphabet, ALPHABET)
     return ciphertext.translate(table)
 
-def method1(plaintext):
-    print("Method 1")
-    return 0
+# Comparing with DICT to find real words
+# Could be made to run more efficiently
+def isPlaintext(plaintext):
+    match = 0
+    for i in DICT.split('\n'):
+        for j in plaintext.split():
+            if i == j:
+                match += 1 # Counts number of matches in dictionary
+    if match > 3:
+        return True # If there are more than 3 words, this is probably plaintext
+    else:
+        return False
 
-def method2(plaintext):
-    print("Method 2")
-    return 0
-
-INPUT = raw_input("Ciphertext: ")
-METHOD = raw_input("Method: ")
-if METHOD = 1:
-    for i in range(95):
-        out = method1(decrypt(INPUT, i))
-else if METHOD == 2:
-    for i in range(95):
-        out = method2(decrypt(INPUT, i))
-print(out)
+# Read in ciphertext, try all possible shifts, and return only those likely to be real plaintext
+INPUT = input()
+for i in range(95):
+    if isPlaintext(decrypt(INPUT, i)) == True:
+        print("SHIFT=", i, "\n", decrypt(INPUT, i)) # Print the candidates for correct plaintext
 
