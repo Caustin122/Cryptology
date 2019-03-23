@@ -1,4 +1,4 @@
-# Et tu, Brute?
+# Abraxas
 #
 # Chris Kalahiki
 #
@@ -6,9 +6,6 @@
 
 # Alphabet goes here
 ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\|;:'\",<.>/? "
-
-# Alt Alphabet for ciphertext-3.txt
-#ALPHABET = " -,;:!?/.'\"()[]$&#%012345789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxyYzZ"
 
 # Read in the dictionary.txt file
 DICT = open("dictionary.txt", "r")
