@@ -1,26 +1,35 @@
-#import cld2
-encrypted_input = raw_input("Enter the encrypted text :")
+# Et tu, Brute?
+#
+# Colby Austin
+
 shift = 1
+encrypted_input = open("text1.txt")                 #reads in the encrypted text
+encrypted_input = encrypted_input.readlines()       #seperates the files lines into elements in a list
+
+#the alphabets
+alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\|;:'\",<.>/? "
+#alphabet = "-,;:!?/.'\"()[]$&#%012345789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxyYzZ"
+
 def decrypt(shift):
     decrypted_text = ""
-    for i, encrypted_char in enumerate (encrypted_input):
-        ascii_value = int(ord(encrypted_char)) - shift                   #ascii range 33 to 126
-        if ascii_value < 32:
-            ascii_value = int(ascii_value) + 94
-        decrypted_char = chr(ascii_value)
-        decrypted_text = decrypted_text + decrypted_char
+    for encrypted_line in encrypted_input[:]:       #loops through each element in the list
+        for character in encrypted_line:            #loops through each character in that element
+            if character != "\n":                   #if the charater is not a new line symbol
+                decrypted_text = decrypted_text + alphabet[(int(alphabet.find(character)) + shift) % len(alphabet)]  #appends the recently shifted character to the decrypted string
+            else:                                   #if the character is a new line symbol
+                decrypted_text = decrypted_text + character         #append the new line character to the decrypted string
     return (decrypted_text)
 
-def plaintextcheck(decrypted_text):
-    decrypted_text.encode('utf-8')
-    isreliable, textbytesfound, details = cld.detect(decrypted_text)
-    if details([0][0]) == 'english':
-        print decrypted_text.decode('utf-8')
+def plaintextcheck(decrypted_string):
+    word_count,word_match = 1.0, 0.0
+    for word in open('dictionary.txt').read():         #loops through every word in the dictionary
+         if decrypted_string.find(word) > 0:            #if the word is contained in the decrypted string it returns the first position of the word otherwise it returns -1
+            word_match = float(word_match) + float(1)   #increase the word match count by 1
+         word_count = float(word_count) + 1             #increase the total world count by 1
+    word_percentage = word_match/word_count             #calculates the percentage of matching words
+    if 0.75 < word_percentage:                          #if more than 75 percent of the words are matches print to the terminal
+        print "shift = %, confidence = % \n %",(shift, word_percentage, decrypted_string)
 
-
-while (shift < 95):
-    #plaintextcheck(decrypt(shift))
-    print(decrypt(shift))
+while (shift < 95):                                     #loops through all possible shifts
+    plaintextcheck(decrypt(shift))
     shift += 1
-
-#qPbqr EBG Nhgb
