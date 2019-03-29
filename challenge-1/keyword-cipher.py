@@ -5,8 +5,10 @@
 import sys
 
 # The hard-coded alphabet
-ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\|;:'\",<.>/? "
+#ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\|;:'\",<.>/? "
 #ALPHABET = " -,;:!?/.'\"()[]$&#%012345789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxyYzZ" # For ciphertext-3.txt
+#ALPHABET = "7JZv. 964jMLh)5QtAS2PXWaFU8,/cpkY'O(Tqr?dsEmbRwINVKBez1=3+H0GyfxCiD\"lg:!uo" # First alphabet
+ALPHABET = "1234567890"
 
 # Importing and sorting the dictionary
 DICT = open("dictionary.txt", "r")
@@ -16,7 +18,6 @@ TESTDICT = [i.lower() for i in DICT] # Edited dictionary for testing if plaintex
 #DICT.reverse() # Reverse alphabet if needed
 INPUT = sys.stdin.readlines() # Read in the input
 INPUT = [i.strip('\n') for i in INPUT] # Strip newline characters
-
 
 def encrypt(plaintext, key):
     shifted_alphabet = ''
@@ -50,7 +51,7 @@ def isPlaintext(plaintext):
                 match += 1
             count += 1
     perc = float(match)/float(count) # percent correct = words matched / words checked
-    return True if perc >= 0.9 else False # 0.9 in case there  are trailing apostrophes that I didn't catch
+    return True if perc >= 0.5 else False # 0.9 in case there  are trailing apostrophes that I didn't catch
 
 # Checking if a word from the dictionary is a valid key (no repeated letters)
 def validKey(key):
@@ -59,12 +60,15 @@ def validKey(key):
     return False
 
 # Creating a list of valid keys from the dictionary using the validKey function
-KEYS = [i for i in DICT if validKey(i) == True]
+KEYS = [i for i in DICT if i.startswith("d") if validKey(i) == True]
+
+
 
 # Main Program
-for i in KEYS: # For each valid key in from the list
+""" for i in KEYS: # For each valid key in from the list
+    print(i) # For debugging: Uncomment if you want to see where you are in the list of keywords
     if isPlaintext(decrypt(INPUT, i)) == True: # Decrypts the input based on the key, then check if the decrypted text is readable
         print("Key=", i) # If so, print the key and decrypted text
         for i in decrypt(INPUT, i): print(i.strip('\n'))
-        break # stop searching if you find a valid response
-    #print(i) # For debugging: Uncomment if you want to see where you are in the list of keywords
+        break # stop searching if you find a valid response """
+for i in encrypt(INPUT, "27"): print(i.strip('\n'))
