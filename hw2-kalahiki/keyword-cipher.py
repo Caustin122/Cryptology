@@ -26,14 +26,14 @@ def decrypt(ciphertext, key):
 # Checking if plaintext is human-readable
 def isPlaintext(plaintext):
     match, count = 0, 0
-    for i in DICT:
-        for j in plaintext:
-            for k in j.split():
-                if i.lower() == k.lower(): match += 1
-                count += 1
+    for i in plaintext:
+        for j in i.split():
+            for k in DICT:
+                if j.lower() == k.lower(): match += 1
+            count += 1
     #return True if match > 3 else False
     perc = float(match)/float(count)
-    return True if perc >= 0.34 else False
+    return True if perc >= 0.5 else False
 
 # Checking if a word from the dictionary is a valid key (no repeated letters)
 def validKey(key):
