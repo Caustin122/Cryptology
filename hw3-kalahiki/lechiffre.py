@@ -3,7 +3,6 @@
 # by: The Epidemics
 
 import sys
-from itertools import cycle,starmap
 
 # the alphabet
 ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\|;:'\",<.>/? "
@@ -48,7 +47,7 @@ def isPlaintext(plaintext):
             match += 1
         count += 1
     perc = float(match)/float(count) # percent correct = words matched / words checked
-    #print('{} / {} = {}'.format(match,count,perc))
+    #print('{} / {} = {}'.format(match,count,perc)) # For debugging
     return True if perc >= 0.8 else False # 0.9 in case there  are trailing apostrophes that I didn't catch
 
 # Main Program
@@ -57,5 +56,4 @@ for i in DICT: # Replace with KEYDICT for ciphertext-3.txt
         print("Key: ", i) # If so, print the key and decrypted text
         print(decrypt(INPUT, i))
         break # stop searching if you find a valid response
-""" if isPlaintext(decrypt(INPUT, 'Byzantine')) == True: # Decrypts the input based on the key, then check if the decrypted text is readable
-    print(decrypt(INPUT, 'Byzantine')) """
+
