@@ -1,8 +1,10 @@
 from sys import stdin, stdout
 import re
+import hashlib
+
 def decrypt(ciphertext,d,e,n):                          #decrypt a character with a given key
-    print"Trying e=%d\nd=%d"%(e,d)
-    print"Public key: (%d, %d)\nPrivate key:(%d, %d)"%(e,n,d,n)
+    print("Trying e=%d\nd=%d"%(e,d))
+    print("Public key: (%d, %d)\nPrivate key:(%d, %d)"%(e,n,d,n))
     for C in range(1,len(ciphertext)):
         m = int(ciphertext[C]) ** d % n
         try:
@@ -42,10 +44,10 @@ n = eval(ciphertext[0])
 p,q = factor(n)                                 #finds the factors of n
 print("p = %d\nq = %d"%(p,q))
 z = (p-1)*(q-1)                                 #calsulates z with p and q
-print "z = %d"%(z)
+print("z = %d"%(z))
 for e in range(3,z,2):                           #loops through each possible e
     if (gcd(e,n) == 1) and (gcd(e,z) == 1):     #if the e is co prime with n and z
-        print gcd(e,n)
-        print gcd(e,z)
+        print(gcd(e,n))
+        print(gcd(e,z))
         d = modInverse(e,z)                     #calculates d using the modulo invers
         decrypt(ciphertext,d,e,n)
