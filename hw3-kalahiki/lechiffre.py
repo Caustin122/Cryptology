@@ -7,11 +7,12 @@ from itertools import cycle,starmap
 
 # the alphabet
 ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\|;:'\",<.>/? "
+#ALPHABET = " -,;:!?/.'"()[]$&#%012345789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxyYzZ" # Alt Alphabet for ciphertext-3.txt
 
 # import dictionary
 DICT = open("dictionary.txt", "r")
 DICT = DICT.read().rstrip('\n').split('\n')
-#KEYDICT = [i for i in DICT if len(i) >= 18]
+#KEYDICT = [i for i in DICT if len(i) >= 18] # For ciphertext-3.txt
 TESTDICT = [i.lower() for i in DICT]
 INPUT = sys.stdin.read().rstrip('\n')
 
@@ -51,7 +52,7 @@ def isPlaintext(plaintext):
     return True if perc >= 0.8 else False # 0.9 in case there  are trailing apostrophes that I didn't catch
 
 # Main Program
-for i in DICT: # For each valid key in from the list
+for i in DICT: # Replace with KEYDICT for ciphertext-3.txt
     if isPlaintext(decrypt(INPUT, i)) == True: # Decrypts the input based on the key, then check if the decrypted text is readable
         print("Key: ", i) # If so, print the key and decrypted text
         print(decrypt(INPUT, i))
