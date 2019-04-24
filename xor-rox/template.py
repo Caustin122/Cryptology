@@ -22,7 +22,7 @@ row = 10
 col = 10
 r, g, b = pixels[row, col]
 # display the current pixel RGB values
-print r, g, b
+print(r, g, b)
 # change the current pipxel RGB values
 pixels[row, col] = (0, 0, 0)
 
@@ -31,7 +31,7 @@ row = 20
 col = 20
 r, g, b = pixels[row, col]
 # display the current pixel RGB values
-print r, g, b
+print(r, g, b)
 # change the current pipxel RGB values
 pixels[row, col] = (0, 0, 0)
 
@@ -40,7 +40,7 @@ row = 30
 col = 30
 r, g, b = pixels[row, col]
 # display the current pixel RGB values
-print r, g, b
+print(r, g, b)
 # change the current pipxel RGB values
 pixels[row, col] = (0, 0, 0)
 
