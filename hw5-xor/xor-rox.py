@@ -1,7 +1,5 @@
 # XOR ROX
-# Sample template to show how to manipulate PNG pixels
-# Also includes default values for the input and output image filenames
-#  (keep them that way!)
+# by: The Epidemics
 
 from PIL import Image
 from random import randrange
@@ -16,49 +14,25 @@ XOR_IMAGE = "xor.png"
 img = Image.open(INPUT_IMAGE)
 pixels = img.load()
 rows, cols = img.size
-print('[input.png is loaded]')
 
-# Initialize the randomly generated key here
 key = pixels
+
+AND = Image.open(INPUT_IMAGE)
+OR = Image.open(INPUT_IMAGE)
+XOR = Image.open(INPUT_IMAGE)
+AND_pixels = AND.load()
+OR_pixels = OR.load()
+XOR_pixels = XOR.load()
+
 for i in range(rows):
-    for j in range(10):
-        key[i, j] = randrange(255), randrange(255), randrange(255)
+    for j in range(cols):
+        key[i, j] = (randrange(255), randrange(255), randrange(255))
+        print(key[i,j])
+        AND_pixels[i,j] = ((AND_pixels[i,j][0] & key[i,j][0]) , (AND_pixels[i,j][1] & key[i,j][1]) , (AND_pixels[i,j][2] & key[i,j][2]))
+        OR_pixels[i,j] = ((OR_pixels[i,j][0] | key[i,j][0]) , (OR_pixels[i,j][1] | key[i,j][1]) , (OR_pixels[i,j][2] | key[i,j][2]))
+        XOR_pixels[i,j] = ((XOR_pixels[i,j][0] ^ key[i,j][0]) , (XOR_pixels[i,j][1] ^ key[i,j][1]) , (XOR_pixels[i,j][2] ^ key[i,j][2]))
 
-def And():
-    AND = pixels
-
-    for i in range(rows):
-        for j in range(cols):
-            print(pixels[i,j])
-            AND[i,j] = AND[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
-
-    # write the new image
-    img.save(AND_IMAGE)
-
-def Or():
-    OR = pixels
-
-    for i in range(rows):
-        for j in range(cols):
-            print(pixels[i,j])
-            OR[i,j] = ((pixels[i,j][0] | key[i,j][0]) , (pixels[i,j][1] | key[i,j][1]) , (pixels[i,j][2] | key[i,j][2]))
-
-    # write the new image
-    img.save(OR_IMAGE)
-
-def Xor():
-    XOR = pixels
-
-    for i in range(rows):
-        for j in range(cols):
-            print(pixels[i,j])
-            XOR[i,j] = ((pixels[i,j][0] ^ key[i,j][0]) , (pixels[i,j][1] ^ key[i,j][1]) , (pixels[i,j][2] ^ key[i,j][2]))
-
-    # write the new image
-    img.save(XOR_IMAGE)
-
-# Main Program
-And()
-Or()
-Xor()
-print('[and.png, or.png, xor.png are all stored]')
+# write the new image
+AND.save(AND_IMAGE)
+OR.save(OR_IMAGE)
+XOR.save(XOR_IMAGE)
