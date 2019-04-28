@@ -4,12 +4,17 @@
 #  (keep them that way!)
 
 from PIL import Image
+from random import randrange
 
 # the images
 INPUT_IMAGE = "input.png"
 AND_IMAGE = "and.png"
 OR_IMAGE = "or.png"
 XOR_IMAGE = "xor.png"
+
+# Initialize the randomly generated key here
+
+########## Everything above this line stays ##########
 
 # get the input image
 img = Image.open(INPUT_IMAGE)
@@ -44,6 +49,51 @@ print(r, g, b)
 # change the current pipxel RGB values
 pixels[row, col] = (0, 0, 0)
 
-# write the new image
-img.save(AND_IMAGE)
+########## Everything below this line stays ##########
 
+def And():
+    # get the input image
+    img = Image.open(INPUT_IMAGE)
+    pixels = img.load()
+    rows, cols = img.size
+
+    for i in range(cols):
+        for j in range(rows):
+            # AND operation on key and input at this location
+            print('AND')
+
+    # write the new image
+    img.save(AND_IMAGE)
+
+def Or():
+    # get the input image
+    img = Image.open(INPUT_IMAGE)
+    pixels = img.load()
+    rows, cols = img.size
+
+    for i in range(cols):
+        for j in range(rows):
+            # OR operation on key and input at this location
+            print('OR')
+
+    # write the new image
+    img.save(OR_IMAGE)
+
+def Xor():
+    # get the input image
+    img = Image.open(INPUT_IMAGE)
+    pixels = img.load()
+    rows, cols = img.size
+
+    for i in range(cols):
+        for j in range(rows):
+            # XOR operation on key and input at this location
+            print('XOR')
+
+    # write the new image
+    img.save(XOR_IMAGE)
+
+# Main Program
+And()
+Or()
+Xor()
