@@ -16,11 +16,12 @@ XOR_IMAGE = "xor.png"
 img = Image.open(INPUT_IMAGE)
 pixels = img.load()
 rows, cols = img.size
+print('[input.png is loaded]')
 
 # Initialize the randomly generated key here
 key = pixels
 for i in range(rows):
-    for j in range(cols):
+    for j in range(10):
         key[i, j] = randrange(255), randrange(255), randrange(255)
 
 def And():
@@ -28,6 +29,7 @@ def And():
 
     for i in range(rows):
         for j in range(cols):
+            print(pixels[i,j])
             AND[i,j] = AND[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
 
     # write the new image
@@ -38,6 +40,7 @@ def Or():
 
     for i in range(rows):
         for j in range(cols):
+            print(pixels[i,j])
             OR[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
 
     # write the new image
@@ -48,6 +51,7 @@ def Xor():
 
     for i in range(rows):
         for j in range(cols):
+            print(pixels[i,j])
             XOR[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
 
     # write the new image
@@ -57,3 +61,4 @@ def Xor():
 And()
 Or()
 Xor()
+print('[and.png, or.png, xor.png are all stored]')
