@@ -41,7 +41,7 @@ def Or():
     for i in range(rows):
         for j in range(cols):
             print(pixels[i,j])
-            OR[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
+            OR[i,j] = ((pixels[i,j][0] | key[i,j][0]) , (pixels[i,j][1] | key[i,j][1]) , (pixels[i,j][2] | key[i,j][2]))
 
     # write the new image
     img.save(OR_IMAGE)
@@ -52,7 +52,7 @@ def Xor():
     for i in range(rows):
         for j in range(cols):
             print(pixels[i,j])
-            XOR[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
+            XOR[i,j] = ((pixels[i,j][0] ^ key[i,j][0]) , (pixels[i,j][1] ^ key[i,j][1]) , (pixels[i,j][2] ^ key[i,j][2]))
 
     # write the new image
     img.save(XOR_IMAGE)
