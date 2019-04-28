@@ -12,14 +12,16 @@ AND_IMAGE = "and.png"
 OR_IMAGE = "or.png"
 XOR_IMAGE = "xor.png"
 
-# Initialize the randomly generated key here
-
-########## Everything above this line stays ##########
-
 # get the input image
 img = Image.open(INPUT_IMAGE)
 pixels = img.load()
 rows, cols = img.size
+
+# Initialize the randomly generated key here
+
+
+
+########## Everything above this line stays ##########
 
 # pick some pixels to change
 # get the current pixel
