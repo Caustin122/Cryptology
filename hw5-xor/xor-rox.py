@@ -18,79 +18,37 @@ pixels = img.load()
 rows, cols = img.size
 
 # Initialize the randomly generated key here
-
-
-
-########## Everything above this line stays ##########
-
-# pick some pixels to change
-# get the current pixel
-row = 10
-col = 10
-r, g, b = pixels[row, col]
-# display the current pixel RGB values
-print(r, g, b)
-# change the current pipxel RGB values
-pixels[row, col] = (0, 0, 0)
-
-# get another pixel
-row = 20
-col = 20
-r, g, b = pixels[row, col]
-# display the current pixel RGB values
-print(r, g, b)
-# change the current pipxel RGB values
-pixels[row, col] = (0, 0, 0)
-
-# get another pixel
-row = 30
-col = 30
-r, g, b = pixels[row, col]
-# display the current pixel RGB values
-print(r, g, b)
-# change the current pipxel RGB values
-pixels[row, col] = (0, 0, 0)
-
-########## Everything below this line stays ##########
+key = pixels
+for i in range(rows):
+    for j in range(cols):
+        key[i, j] = randrange(255), randrange(255), randrange(255)
 
 def And():
-    # get the input image
-    img = Image.open(INPUT_IMAGE)
-    pixels = img.load()
-    rows, cols = img.size
+    AND = pixels
 
-    for i in range(cols):
-        for j in range(rows):
-            # AND operation on key and input at this location
-            print('AND')
+    for i in range(rows):
+        for j in range(cols):
+            AND[i,j] = AND[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
 
     # write the new image
     img.save(AND_IMAGE)
 
 def Or():
-    # get the input image
-    img = Image.open(INPUT_IMAGE)
-    pixels = img.load()
-    rows, cols = img.size
+    OR = pixels
 
-    for i in range(cols):
-        for j in range(rows):
-            # OR operation on key and input at this location
-            print('OR')
+    for i in range(rows):
+        for j in range(cols):
+            OR[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
 
     # write the new image
     img.save(OR_IMAGE)
 
 def Xor():
-    # get the input image
-    img = Image.open(INPUT_IMAGE)
-    pixels = img.load()
-    rows, cols = img.size
+    XOR = pixels
 
-    for i in range(cols):
-        for j in range(rows):
-            # XOR operation on key and input at this location
-            print('XOR')
+    for i in range(rows):
+        for j in range(cols):
+            XOR[i,j] = ((pixels[i,j][0] & key[i,j][0]) , (pixels[i,j][1] & key[i,j][1]) , (pixels[i,j][2] & key[i,j][2]))
 
     # write the new image
     img.save(XOR_IMAGE)
