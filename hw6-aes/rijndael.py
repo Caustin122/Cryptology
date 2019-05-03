@@ -76,8 +76,7 @@ def unpad(s):
 	return s[:-ord(s[len(s)-1:])]
 
 # MAIN
-ciphertext = stdin.buffer.read()
-ciphertext = str(ciphertext).strip()
+ciphertext = stdin.buffer.read().strip()
 for key in word_list: # For valid words
     print("Ciphertext: {}".format(ciphertext))
     print(len(ciphertext))
