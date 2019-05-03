@@ -82,15 +82,15 @@ def unpad(s):
 # MAIN
 ciphertext = stdin.buffer.read().strip()
 for key in word_list: # For valid words
-    print("Ciphertext: {}".format(ciphertext))
-    print(len(ciphertext))
-    print("Key: {}".format(key))
+    #print("Ciphertext: {}".format(ciphertext))
+    #print(len(ciphertext))
     plaintext = decrypt(ciphertext, key)
-    print("Plaintext: {}".format(plaintext))
+    #print("Plaintext: {}".format(plaintext))
     try:
-        e_freq = freq_check(plaintext)
-        break
-    except(TypeError): print(None)
+        e_freq = freq_check(str(plaintext))
+        print("Key: {}".format(key))
+        print("Plaintext: {}".format(plaintext))
+    except(TypeError): x = 1
     #break
     #if (e_freq >= .85) & (e_freq < 1):
     #    print("KEY={}".format(key)) # Print the key
