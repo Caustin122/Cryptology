@@ -75,18 +75,17 @@ def freq_check(plaintext):
         return 0
 
 # Unpad the plaintext
-def unpad(s):
-	return s[:-ord(s[len(s)-1:])]
+""" def unpad(s):
+	return s[:-ord(s[len(s)-1:])] """
 
-#word_list=['heartburn']
+word_list=['12345']
 # MAIN
 ciphertext = stdin.buffer.read().strip()
 for key in word_list: # For valid words
     #print("Ciphertext: {}".format(ciphertext))
     #print(len(ciphertext))
     plaintext = decrypt(ciphertext, key)
-    print("Plaintext: {}".format(plaintext))
-
+    print("Plaintext: {} \n".format(plaintext))
 
     """ try:
         e_freq = freq_check(str(plaintext))

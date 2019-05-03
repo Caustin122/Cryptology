@@ -5,7 +5,7 @@ from PIL import Image
 from random import randrange
 
 # the images
-INPUT_IMAGE = "input.png"
+INPUT_IMAGE = "view-me.png"
 AND_IMAGE = "and.png"
 OR_IMAGE = "or.png"
 XOR_IMAGE = "xor.png"
