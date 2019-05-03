@@ -81,17 +81,18 @@ def unpad(s):
 #word_list=['heartburn']
 # MAIN
 ciphertext = stdin.buffer.read().strip()
-print(ciphertext)
 for key in word_list: # For valid words
     #print("Ciphertext: {}".format(ciphertext))
     #print(len(ciphertext))
     plaintext = decrypt(ciphertext, key)
     print("Plaintext: {}".format(plaintext))
-    try:
+
+
+    """ try:
         e_freq = freq_check(str(plaintext))
         print("Key: {}".format(key))
         print("Plaintext: {}".format(plaintext))
-    except(TypeError): x = 1
+    except(TypeError): x = 1 """
     #break
     #if (e_freq >= .85) & (e_freq < 1):
     #    print("KEY={}".format(key)) # Print the key
