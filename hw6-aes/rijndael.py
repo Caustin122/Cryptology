@@ -16,7 +16,7 @@ word_list = map(lambda s: s.strip(), word_list)
 
 def decrypt(ciphertext, key):
     key = sha256(key).digest()
-    print key
+    print (key)
     iv = ciphertext[:16]
     cipher = AES.new(key, AES.MODE_CBC, iv)
     plaintext = cipher.decrypt(ciphertext[16:])
