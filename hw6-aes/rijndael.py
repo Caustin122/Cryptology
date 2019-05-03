@@ -77,8 +77,10 @@ def unpad(s):
 
 # MAIN
 ciphertext = stdin.buffer.read()
+ciphertext = str(ciphertext).strip()
 for key in word_list: # For valid words
     print("Ciphertext: {}".format(ciphertext))
+    print(len(ciphertext))
     print("Key: {}".format(key))
     plaintext = decrypt(ciphertext, key)
     e_freq = freq_check(plaintext)
