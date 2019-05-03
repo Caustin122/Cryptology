@@ -17,7 +17,7 @@ PAD_WITH = "#"
 # Dictionary Set-up
 dictionary = open('dictionary1-3.txt') # Insert dictionary file here
 word_list = dictionary.readlines()
-word_list = map(lambda s: s.strip(), word_list)
+word_list = map(lambda s: s.strip().encode(), word_list)
 
 # decrypts a ciphertext with a key
 def decrypt(ciphertext, key):
@@ -76,13 +76,15 @@ def unpad(s):
 	return s[:-ord(s[len(s)-1:])]
 
 # MAIN
-plaintext = stdin.read().rstrip("\n")
+ciphertext = stdin.buffer.read()
 for key in word_list: # For valid words
+    print("Ciphertext: {}".format(ciphertext))
+    print("Key: {}".format(key))
     plaintext = decrypt(ciphertext, key)
     e_freq = freq_check(plaintext)
     if (e_freq >= .85) & (e_freq < 1):
         print("KEY={}".format(key)) # Print the key
-		print(plaintext) # Print the plaintext
+        print(plaintext) # Print the plaintext
 
 """ print ("Plaintext:")
 print (plaintext)
