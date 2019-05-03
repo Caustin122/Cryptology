@@ -81,6 +81,7 @@ def unpad(s):
 #word_list=['heartburn']
 # MAIN
 ciphertext = stdin.buffer.read().strip()
+print(ciphertext)
 for key in word_list: # For valid words
     #print("Ciphertext: {}".format(ciphertext))
     #print(len(ciphertext))
