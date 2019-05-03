@@ -50,18 +50,18 @@ def encrypt(plaintext, key):
 
 # MAIN
 plaintext = stdin.read().rstrip("\n")
-print "Plaintext:"
-print plaintext
-print
+print ("Plaintext:")
+print (plaintext)
+print('\n')
 
 ciphertext = encrypt(plaintext, KEY)
-print "Ciphertext (encrypted with {}):".format(KEY)
-print ciphertext
-print
-print "Ciphertext (encoded in base64):"
-print ciphertext.encode("base64").replace("\n", "")
-print
+print ("Ciphertext (encrypted with {}):".format(KEY))
+print (ciphertext)
+print('\n')
+print ("Ciphertext (encoded in base64):")
+print (ciphertext.encode("base64").replace("\n", ""))
+print('\n')
 
 plaintext = decrypt(ciphertext, KEY)
-print "Plaintext (decrypted with {}):".format(KEY)
-print plaintext
+print ("Plaintext (decrypted with {}):".format(KEY))
+print (plaintext)
