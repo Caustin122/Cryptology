@@ -15,14 +15,17 @@ PAD_WITH = "#"
 #KEY = "rijndael"
 
 # Dictionary Set-up
-dictionary = open('dictionary1-3.txt') # Insert dictionary file here
-word_list = dictionary.readlines()
-word_list = map(lambda s: s.strip().encode(), word_list)
+#dictionary = open('dictionary1-3.txt') # Insert dictionary file here
+#word_list = dictionary.readlines()
+#word_list = map(lambda s: s.strip().encode('utf-8'), word_list)
+
+with open('dictionary1-3.txt') as dictionary:
+    word_list = [line.strip() for line in dictionary]
 
 # decrypts a ciphertext with a key
 def decrypt(ciphertext, key):
 	# hash the key (SHA-256) to ensure that it is 32 bytes long
-	key = sha256(key).digest()
+	key = sha256(key.encode('utf-8')).digest()
 	# get the 16-byte IV from the ciphertext
 	# by default, we put the IV at the beginning of the ciphertext
 	iv = ciphertext[:16]
@@ -34,7 +37,7 @@ def decrypt(ciphertext, key):
 
 	# remove potential padding at the end of the plaintext
 	# figure this one out...
-	plaintext = unpad(plaintext)
+	#plaintext = unpad(plaintext)
 
 	return plaintext
 
@@ -75,6 +78,7 @@ def freq_check(plaintext):
 def unpad(s):
 	return s[:-ord(s[len(s)-1:])]
 
+#word_list=['heartburn']
 # MAIN
 ciphertext = stdin.buffer.read().strip()
 for key in word_list: # For valid words
@@ -82,10 +86,15 @@ for key in word_list: # For valid words
     print(len(ciphertext))
     print("Key: {}".format(key))
     plaintext = decrypt(ciphertext, key)
-    e_freq = freq_check(plaintext)
-    if (e_freq >= .85) & (e_freq < 1):
-        print("KEY={}".format(key)) # Print the key
-        print(plaintext) # Print the plaintext
+    print("Plaintext: {}".format(plaintext))
+    try:
+        e_freq = freq_check(plaintext)
+        break
+    except(TypeError): print(None)
+    #break
+    #if (e_freq >= .85) & (e_freq < 1):
+    #    print("KEY={}".format(key)) # Print the key
+    #    print(plaintext) # Print the plaintext
 
 """ print ("Plaintext:")
 print (plaintext)
