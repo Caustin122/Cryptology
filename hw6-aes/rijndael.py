@@ -15,7 +15,7 @@ PAD_WITH = "#"
 #KEY = "rijndael"
 
 # Dictionary Set-up
-dictionary = open('dictionary1-3.txt')
+dictionary = open('dictionary1-3.txt') # Insert dictionary file here
 word_list = dictionary.readlines()
 word_list = map(lambda s: s.strip(), word_list)
 
