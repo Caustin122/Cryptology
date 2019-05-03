@@ -1,4 +1,5 @@
 # Rijndael
+# by: The Epidemics
 
 from sys import stdin
 from hashlib import sha256
@@ -8,14 +9,14 @@ import re
 
 BLOCK_SIZE = 16
 PAD_WITH = "#"
-dictionary = open('dictionary.txt')
+dictionary = open('dictionary1-3.txt')
 word_list = dictionary.readlines()
 word_list = map(lambda s: s.strip(), word_list)
 
 
 def decrypt(ciphertext, key):
     key = sha256(key).digest()
-    print key
+    print(key)
     iv = ciphertext[:16]
     cipher = AES.new(key, AES.MODE_CBC, iv)
     if len(ciphertext)%16 != 0:
@@ -55,8 +56,8 @@ def freq_check(plaintext):
 # MAIN
 ciphertext = stdin.read().rstrip("\n")
 for key in word_list:
-    print key
+    print(key)
     plaintext = decrypt(ciphertext, key)
     e_freq = freq_check(plaintext)
     if (e_freq >= .85) & (e_freq < 1):
-        print plaintext
+        print(plaintext)
