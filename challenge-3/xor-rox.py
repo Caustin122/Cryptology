@@ -3,6 +3,7 @@
 
 from PIL import Image
 from random import randrange
+from sys import stdin
 
 # the images
 INPUT_IMAGE = "view-me.png"
