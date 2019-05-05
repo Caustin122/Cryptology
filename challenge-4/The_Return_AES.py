@@ -15,7 +15,7 @@ DEBUG = False
 # Dictionary to use for keywords. Alternate dictionary
 # commented out for easy swapping. This code can use the
 # original 99,000 word dictionary just fine, if you'd like
-DICTIONARY = "../Caesar/dictionary.txt"
+DICTIONARY = "../hw1-caesar/dictionary.txt"
 # DICTIONARY = "dictionary1-3.txt"
 # DICTIONARY = "dictionary4.txt"
 
