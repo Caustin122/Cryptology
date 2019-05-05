@@ -19,8 +19,8 @@ PAD_WITH = "#"
 #word_list = dictionary.readlines()
 #word_list = map(lambda s: s.strip().encode('utf-8'), word_list)
 
-with open('../hw6-aes/dictionary1-3.txt') as dictionary:
-    word_list = [line.strip() for line in dictionary]
+#with open('../hw6-aes/dictionary1-3.txt') as dictionary:
+#    word_list = [line.strip() for line in dictionary]
 
 # decrypts a ciphertext with a key
 def decrypt(ciphertext, key):
@@ -59,24 +59,24 @@ def encrypt(plaintext, key):
 	return ciphertext
 
 # Frequency Check
-def freq_check(plaintext):
-    e_count, expected_frequency = 0, 0.1202
-    candidate_text = plaintext
-    adjusted_string = re.sub(r"[^a-z]", "", candidate_text.lower())
-    for letter in adjusted_string:
-        if letter == 'e':
-            e_count += 1
-    total_characters = len(adjusted_string)
-    if e_count > 0:
-        frequency = float(e_count / total_characters)
-        confidence = (1 - float(abs(expected_frequency - frequency)) / float(expected_frequency))
-        return confidence
-    else:
-        return 0
+#def freq_check(plaintext):
+#    e_count, expected_frequency = 0, 0.1202
+#    candidate_text = plaintext
+#    adjusted_string = re.sub(r"[^a-z]", "", candidate_text.lower())
+#    for letter in adjusted_string:
+#        if letter == 'e':
+#            e_count += 1
+#    total_characters = len(adjusted_string)
+#    if e_count > 0:
+#        frequency = float(e_count / total_characters)
+#        confidence = (1 - float(abs(expected_frequency - frequency)) / float(expected_frequency))
+#        return confidence
+#    else:
+#        return 0
 
 # Unpad the plaintext
-def unpad(s):
-	return s[:-ord(s[len(s)-1:])]
+#def unpad(s):
+#	return s[:-ord(s[len(s)-1:])]
 
 word_list=['ivmessagedigestmessagedigestmessagedigestmessagedigestmessagedigestkey']
 # MAIN
