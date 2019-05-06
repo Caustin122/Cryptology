@@ -1,6 +1,23 @@
-# The Epidemics
 
-#def encrypt(plaintext, time):
+
+
+def little_encrypt(plaintext, shift):
+    plaintext = list(plaintext)
+    print (plaintext)
+    num_loops = len(plaintext) / 9
+    for i in shift:
+        j = 1
+        while j <= num_loops:
+            print(plaintext[j * (num_loops - 1) + 4] + " and " + plaintext[j * (num_loops - 1) + i])
+            temp = plaintext[j * (num_loops - 1) + 4]
+            plaintext[j * (num_loops - 1) + 4] = plaintext[j * (num_loops - 1) + i]
+            plaintext[j * (num_loops - 1) + i] = temp
+            print plaintext
+            j += 1
+    return plaintext
+
+def big_encrypt(pet, shift):
+    pass
 
 def shift_calc(time):
     time = time.split(":")
@@ -42,7 +59,7 @@ def shift_calc(time):
         shift.append(3)
     elif minute >= 50 and minute <= 55:
         shift.append(0)
-    elif minute >= 56 and minute <= 4:
+    elif (minute >= 56 and minute <= 59) or (minute >= 0 and minute <= 4):
         shift.append(1)
     else:
         return -2
@@ -62,7 +79,7 @@ def shift_calc(time):
         shift.append(3)
     elif second >= 50 and second <= 55:
         shift.append(0)
-    elif second >= 56 and second <= 4:
+    elif (second >= 56 and second <= 59) or (second >= 0 and second <= 4):
         shift.append(1)
     else:
         return -3
@@ -71,7 +88,11 @@ def shift_calc(time):
     return shift
 
 #main:
-
-time = "12:47:36"
+plaintext = "CyberStor"
+time = "8:59:59"
 shift = shift_calc(time)
-print(shift)
+print shift
+pet = little_encrypt(plaintext, shift)
+print "".join(pet)
+#encrypted_text = big_encrypt(pet,shift)
+#print encrypted_text
