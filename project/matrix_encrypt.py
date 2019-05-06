@@ -26,6 +26,7 @@ def shift_calc(time):
         shift.append(1)
     else:
         return -1
+    print("Hour: {}".format(shift[0]))
 
     print(minute)
     if minute >= 5 and minute <= 10:
@@ -46,6 +47,7 @@ def shift_calc(time):
         shift.append(1)
     else:
         return -2
+    print("Minute: {}".format(shift[1]))
 
     if second >= 5 and second <= 10:
         shift.append(2)
@@ -65,6 +67,7 @@ def shift_calc(time):
         shift.append(1)
     else:
         return -3
+    print("Second: {}".format(shift[0]))
 
     return shift
 
