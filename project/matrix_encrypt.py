@@ -3,7 +3,7 @@
 
 def little_encrypt(plaintext, shift):
     plaintext = list(plaintext)
-    print (plaintext)
+    print plaintext
     num_loops = len(plaintext) / 9
     for i in shift:
         j = 1
@@ -18,6 +18,15 @@ def little_encrypt(plaintext, shift):
 
 def big_encrypt(pet, shift):
     pass
+
+def pad(plaintext):
+    padding = "#"
+    n = len(plaintext)%9
+    if n != 0:
+        num_pad = (n-9)%n
+        while(num_pad > 0):
+            plaintext = plaintext + padding
+
 
 def shift_calc(time):
     time = time.split(":")
@@ -43,7 +52,6 @@ def shift_calc(time):
         shift.append(1)
     else:
         return -1
-    print("Hour: {}".format(shift[0]))
 
     if minute >= 5 and minute <= 10:
         shift.append(2)
@@ -63,7 +71,6 @@ def shift_calc(time):
         shift.append(1)
     else:
         return -2
-    print("Minute: {}".format(shift[1]))
 
     if second >= 5 and second <= 10:
         shift.append(2)
@@ -83,7 +90,6 @@ def shift_calc(time):
         shift.append(1)
     else:
         return -3
-    print("Second: {}".format(shift[2]))
 
     return shift
 
@@ -92,6 +98,7 @@ plaintext = "CyberStor"
 time = "8:59:59"
 shift = shift_calc(time)
 print shift
+
 pet = little_encrypt(plaintext, shift)
 print "".join(pet)
 #encrypted_text = big_encrypt(pet,shift)
