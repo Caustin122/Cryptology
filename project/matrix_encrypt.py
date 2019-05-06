@@ -1,5 +1,4 @@
-
-
+# The Epidemics
 
 #def encrypt(plaintext, time):
 
@@ -28,7 +27,7 @@ def shift_calc(time):
     else:
         return -1
 
-    print minute
+    print(minute)
     if minute >= 5 and minute <= 10:
         shift.append(2)
     elif minute >= 11 and minute <= 19:
@@ -73,4 +72,4 @@ def shift_calc(time):
 
 time = "12:47:36"
 shift = shift_calc(time)
-print shift
+print(shift)
