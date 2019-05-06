@@ -1,0 +1,8 @@
+Enter the bitstring: 
+Fill in the missing letters: Z O T _ _ _ S _ _ N
+
+Then browse to: www.jeangourd.com/classes/puzzle_?.php
+Where ? is the sequence of letters
+For example: www.jeangourd.com/classes/puzzle_zotmooseon.php
+
+Your clue: base-10
