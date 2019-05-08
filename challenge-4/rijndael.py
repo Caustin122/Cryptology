@@ -57,8 +57,8 @@ def decrypt(ciphertext, key):
 # 	return ciphertext
 
 # MAIN
-word_list=["Your skills in C++"]
-ciphertext = stdin.read().strip()
+word_list=["010101101011011101110"]
+ciphertext = stdin.buffer.read().strip()
 for key in word_list: # For valid words
     plaintext = decrypt(ciphertext, key)
     print("Plaintext: {}".format(plaintext))
