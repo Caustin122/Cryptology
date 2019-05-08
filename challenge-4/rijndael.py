@@ -26,39 +26,19 @@ PAD_WITH = "#"
 # decrypts a ciphertext with a key
 def decrypt(ciphertext, key):
 	keyword = sha256(key.encode('utf-8')).digest()
-	
+
 	iv = md5(key.encode('utf-8')).digest()
 
 	cipher = AES.new(keyword, AES.MODE_CBC, iv)
-	
+
 	plaintext = cipher.decrypt(base64.b64decode(ciphertext))
 
-	# remove potential padding at the end of the plaintext
-	# figure this one out...
-	#plaintext = unpad(plaintext)
-
 	return plaintext
-
-# encrypts a plaintext with a key
-# def encrypt(plaintext, key):
-# 	# hash the key (SHA-256) to ensure that it is 32 bytes long
-# 	key = sha256(key).digest()
-# 	# generate a random 16-byte IV
-# 	iv = Random.new().read(BLOCK_SIZE)
-
-# 	# encrypt the ciphertext with the key using CBC block cipher mode
-# 	cipher = AES.new(key, AES.MODE_CBC, iv)
-# 	# if necessary, pad the plaintext so that it is a multiple of BLOCK SIZE in length
-# 	plaintext += (BLOCK_SIZE - len(plaintext) % BLOCK_SIZE) * PAD_WITH
-# 	# add the IV to the beginning of the ciphertext
-# 	# IV is at [:16]; ciphertext is at [16:]
-# 	ciphertext = iv + cipher.encrypt(plaintext)
-
-# 	return ciphertext
 
 # MAIN
 word_list=["010101101011011101110"]
 ciphertext = stdin.buffer.read().strip()
-for key in word_list: # For valid words
+#ciphertext = base64.b64decode(ciphertext)
+for key in word_list:
     plaintext = decrypt(ciphertext, key)
     print("Plaintext: {}".format(plaintext))

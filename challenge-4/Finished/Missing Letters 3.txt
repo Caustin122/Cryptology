@@ -1,0 +1,13 @@
+What is the smallest positive integer i that, when multiplied by itself, yields an integer j such that the following is true:
+
+1. j contains each one-digit positive integer that is less than 9 twice, once in its first half and once in its second half.
+2. j contains the digit 9 only once.
+
+Then browse to: www.jeangourd.com/classes/puzzle_?.php
+Where ? is the integer i
+For example: www.jeangourd.com/classes/puzzle_1234567890.php
+
+j = 12345678987654321
+i = 111111111
+
+www.jeangourd.com/classes/puzzle_111111111.php
