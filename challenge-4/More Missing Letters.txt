@@ -1,0 +1,8 @@
+Enter the bitstring: 
+Fill in the missing letters: J F _ _ M _ _ A _ _ N _
+
+Then browse to: www.jeangourd.com/classes/puzzle_?.php
+Where ? is the sequence of letters
+For example: www.jeangourd.com/classes/puzzle_jfxxmopassnt.php
+
+Your clue: 28-31
