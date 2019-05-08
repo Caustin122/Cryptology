@@ -38,7 +38,6 @@ def decrypt(ciphertext, key):
 # MAIN
 word_list=["010101101011011101110"]
 ciphertext = stdin.buffer.read().strip()
-#ciphertext = base64.b64decode(ciphertext)
 for key in word_list:
     plaintext = decrypt(ciphertext, key)
     print("Plaintext: {}".format(plaintext))
