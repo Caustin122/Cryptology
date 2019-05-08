@@ -1,17 +1,12 @@
-
-
-
-def little_encrypt(plaintext, shift):
+def little_encrypt(plaintext, shift):   #the issue is somewhere in here
     plaintext = list(plaintext)
-    print plaintext
     num_loops = len(plaintext) / 9
     for i in shift:
         j = 1
-        while j <= num_loops:
-            print(plaintext[j * (num_loops - 1) + 4] + " and " + plaintext[j * (num_loops - 1) + i])
-            temp = plaintext[j * (num_loops - 1) + 4]
-            plaintext[j * (num_loops - 1) + 4] = plaintext[j * (num_loops - 1) + i]
-            plaintext[j * (num_loops - 1) + i] = temp
+        while j <= num_loops:               #I believe it is inside of this while loop
+            temp = plaintext[(j * (num_loops - 1)) + 4]
+            plaintext[(j * (num_loops - 1)) + 4] = plaintext[(j * (num_loops - 1)) + i]
+            plaintext[(j * (num_loops - 1)) + i] = temp
             print plaintext
             j += 1
     return plaintext
@@ -23,10 +18,11 @@ def pad(plaintext):
     padding = "#"
     n = len(plaintext)%9
     if n != 0:
-        num_pad = (n-9)%n
+        num_pad = 9 - n
         while(num_pad > 0):
             plaintext = plaintext + padding
-
+            num_pad -= 1
+    return plaintext
 
 def shift_calc(time):
     time = time.split(":")
@@ -34,6 +30,7 @@ def shift_calc(time):
     minute = int(time[1])
     second =  int(time[2])
     shift = []
+
     if hour == 1 or hour == 2:
         shift.append(2)
     elif hour == 3:
@@ -53,11 +50,11 @@ def shift_calc(time):
     else:
         return -1
 
-    if minute >= 5 and minute <= 10:
+    if 5 <= minute <= 10:
         shift.append(2)
-    elif minute >= 11 and minute <= 19:
+    elif 11 <= minute <= 19:
         shift.append(5)
-    elif minute >= 20 and minute <= 25:
+    elif 20 <= minute <= 25:
         shift.append(8)
     elif minute >= 26 and minute <= 34:
         shift.append(7)
@@ -94,11 +91,12 @@ def shift_calc(time):
     return shift
 
 #main:
-plaintext = "CyberStor"
-time = "8:59:59"
+plaintext = "Test this, douche"
+time = "8:59:37"
 shift = shift_calc(time)
 print shift
-
+plaintext = pad(plaintext)
+print plaintext
 pet = little_encrypt(plaintext, shift)
 print "".join(pet)
 #encrypted_text = big_encrypt(pet,shift)
