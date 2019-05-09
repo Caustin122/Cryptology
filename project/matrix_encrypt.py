@@ -7,7 +7,7 @@ def little_encrypt(plaintext, shift):   #the issue is somewhere in here
             temp = plaintext[(j * (num_loops - 1)) + 4]
             plaintext[(j * (num_loops - 1)) + 4] = plaintext[(j * (num_loops - 1)) + i]
             plaintext[(j * (num_loops - 1)) + i] = temp
-            print plaintext
+            print(plaintext)
             j += 1
     return plaintext
 
@@ -94,10 +94,10 @@ def shift_calc(time):
 plaintext = "Test this, douche"
 time = "8:59:37"
 shift = shift_calc(time)
-print shift
+print(shift)
 plaintext = pad(plaintext)
-print plaintext
+print(plaintext)
 pet = little_encrypt(plaintext, shift)
-print "".join(pet)
+print ("".join(pet))
 #encrypted_text = big_encrypt(pet,shift)
-#print encrypted_text
+#print(encrypted_text)
