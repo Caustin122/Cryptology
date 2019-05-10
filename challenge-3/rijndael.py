@@ -11,13 +11,6 @@ import re
 BLOCK_SIZE = 16
 # the padding character to use to make the plaintext a multiple of BLOCK_SIZE in length
 PAD_WITH = "#"
-# the key to use in the cipher
-#KEY = "rijndael"
-
-# Dictionary Set-up
-#dictionary = open('dictionary1-3.txt') # Insert dictionary file here
-#word_list = dictionary.readlines()
-#word_list = map(lambda s: s.strip().encode('utf-8'), word_list)
 
 with open('dictionary.txt') as dictionary:
     word_list = [line.strip() for line in dictionary]
@@ -34,10 +27,6 @@ def decrypt(ciphertext, key):
 	cipher = AES.new(key, AES.MODE_CBC, iv)
 	# the ciphertext is after the IV (so, skip 16 bytes)
 	plaintext = cipher.decrypt(ciphertext[16:])
-
-	# remove potential padding at the end of the plaintext
-	# figure this one out...
-	#plaintext = unpad(plaintext)
 
 	return plaintext
 
