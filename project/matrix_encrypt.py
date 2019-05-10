@@ -11,7 +11,7 @@ def little_encrypt(plaintext, shift):   #the issue is somewhere in here
             temp = plaintext[(j * (num_loops - 1)) + 4]
             plaintext[(j * (num_loops - 1)) + 4] = plaintext[(j * (num_loops - 1)) + i]
             plaintext[(j * (num_loops - 1)) + i] = temp
-            print(plaintext) # DEBUG
+            print(plaintext) # DEBUG matrix per shift
             j += 1
     return plaintext
 
@@ -104,16 +104,20 @@ def shift_calc(time):
 plaintext = "plaintext"
 time = "8:59:37"
 shift = shift_calc(time)
-print("Shift: {}".format(shift))
+print("Shift: {}".format(shift)) # DEBUG shift
 plaintext = pad(plaintext)
-print("Plaintext: {}".format(plaintext))
+print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
 pet = little_encrypt(plaintext, shift)
-print("Output: {}".format(pet))
-print("".join(pet))
+print("Output: {}".format(pet)) # DEBUG output format
+print("".join(pet)) # DEBUG output
+
 #encrypted_text = big_encrypt(pet,shift)
 #print(encrypted_text)
 
+
+
 # Notes:
+
 # If the plan is to have a 3x3 matrix (9 characters), 
 # we would have to pass substrings of 9 characters through
 # the little_encrypt function. Those can then be recompiled
