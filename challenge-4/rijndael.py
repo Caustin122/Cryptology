@@ -12,32 +12,23 @@ import re
 BLOCK_SIZE = 16
 # the padding character to use to make the plaintext a multiple of BLOCK_SIZE in length
 PAD_WITH = "#"
-# the key to use in the cipher
-#KEY = "rijndael"
 
-# Dictionary Set-up
-# dictionary = open('dictionary1-3.txt') # Insert dictionary file here
-# word_list = dictionary.readlines()
-# word_list = map(lambda s: s.strip().encode('utf-8'), word_list)
 
-#with open('../hw6-aes/dictionary1-3.txt') as dictionary:
-#    word_list = [line.strip() for line in dictionary]
+with open('dictionary.txt') as dictionary:
+    word_list = [line.strip() for line in dictionary]
 
 # decrypts a ciphertext with a key
 def decrypt(ciphertext, key):
 	keyword = sha256(key.encode('utf-8')).digest()
-
-	iv = md5(key.encode('utf-8')).digest()
-
+	iv = ciphertext[:16] #md5(key.encode('utf-8')).digest()
 	cipher = AES.new(keyword, AES.MODE_CBC, iv)
-
-	plaintext = cipher.decrypt(base64.b64decode(ciphertext))
-
+	plaintext = cipher.decrypt(ciphertext[16:]) #cipher.decrypt(base64.b64decode(ciphertext))
 	return plaintext
 
 # MAIN
-word_list=["PR0VIEW!$"]
+word_list=["thegourdisourshepherd$"]
 ciphertext = stdin.buffer.read().strip()
 for key in word_list:
     plaintext = decrypt(ciphertext, key)
-    print("Plaintext: {}".format(plaintext))
+    #if '5447' in plaintext:
+    print(plaintext)
