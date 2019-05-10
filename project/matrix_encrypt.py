@@ -1,3 +1,7 @@
+# Matrix Encryption
+# by: The Epidemics
+
+# For the 3x3 array
 def little_encrypt(plaintext, shift):   #the issue is somewhere in here
     plaintext = list(plaintext)
     num_loops = len(plaintext) / 9
@@ -7,13 +11,15 @@ def little_encrypt(plaintext, shift):   #the issue is somewhere in here
             temp = plaintext[(j * (num_loops - 1)) + 4]
             plaintext[(j * (num_loops - 1)) + 4] = plaintext[(j * (num_loops - 1)) + i]
             plaintext[(j * (num_loops - 1)) + i] = temp
-            print(plaintext)
+            print(plaintext) # DEBUG
             j += 1
     return plaintext
 
+# For the greater array
 def big_encrypt(pet, shift):
     pass
 
+# Padding where needed
 def pad(plaintext):
     padding = "#"
     n = len(plaintext)%9
@@ -24,6 +30,7 @@ def pad(plaintext):
             num_pad -= 1
     return plaintext
 
+# Calculating the shift
 def shift_calc(time):
     time = time.split(":")
     hour = int(time[0])
@@ -31,6 +38,7 @@ def shift_calc(time):
     second =  int(time[2])
     shift = []
 
+    # Hour Shift
     if hour == 1 or hour == 2:
         shift.append(2)
     elif hour == 3:
@@ -50,6 +58,7 @@ def shift_calc(time):
     else:
         return -1
 
+    # Minute Shift
     if 5 <= minute <= 10:
         shift.append(2)
     elif 11 <= minute <= 19:
@@ -69,6 +78,7 @@ def shift_calc(time):
     else:
         return -2
 
+    # Second Shift
     if second >= 5 and second <= 10:
         shift.append(2)
     elif second >= 11 and second <= 19:
@@ -90,14 +100,24 @@ def shift_calc(time):
 
     return shift
 
-#main:
-plaintext = "Test this, douche"
+# Main
+plaintext = "plaintext"
 time = "8:59:37"
 shift = shift_calc(time)
-print(shift)
+print("Shift: {}".format(shift))
 plaintext = pad(plaintext)
-print(plaintext)
+print("Plaintext: {}".format(plaintext))
 pet = little_encrypt(plaintext, shift)
-print ("".join(pet))
+print("Output: {}".format(pet))
+print("".join(pet))
 #encrypted_text = big_encrypt(pet,shift)
 #print(encrypted_text)
+
+# Notes:
+# If the plan is to have a 3x3 matrix (9 characters), 
+# we would have to pass substrings of 9 characters through
+# the little_encrypt function. Those can then be recompiled
+# and passed into the big_encrypt. 
+
+# Are we setting a hard cutt-off at 81 characters per message?
+# Otherwise, se may need yet another layer to the matrix.
