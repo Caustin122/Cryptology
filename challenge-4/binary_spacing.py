@@ -5,4 +5,4 @@ def encrypt(string, length):
     return ' '.join(string[i:i+length] for i in range(0,len(string),length))
 
 ciphertext = stdin.read().strip()
-print(encrypt(ciphertext, 8))
+print(encrypt(ciphertext, 7))
