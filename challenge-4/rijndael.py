@@ -36,7 +36,7 @@ def decrypt(ciphertext, key):
 	return plaintext
 
 # MAIN
-word_list=["010101101011011101110"]
+word_list=["PR0VIEW!$"]
 ciphertext = stdin.buffer.read().strip()
 for key in word_list:
     plaintext = decrypt(ciphertext, key)
