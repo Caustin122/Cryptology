@@ -4,13 +4,19 @@
 # For the 3x3 array
 def little_encrypt(plaintext, shift):   #the issue is somewhere in here
     plaintext = list(plaintext)
-    num_loops = len(plaintext) / 9
+    num_loops = int(len(plaintext) / 9)
+
+    # print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
+    # print("Shift: {}".format(shift)) # DEBUG shift
+    # print("Number of Loops: {}".format(num_loops)) # DEBUG num_loops
+
     for i in shift:
-        j = 1
-        while j <= num_loops:               #I believe it is inside of this while loop
-            temp = plaintext[(j * (num_loops - 1)) + 4]
-            plaintext[(j * (num_loops - 1)) + 4] = plaintext[(j * (num_loops - 1)) + i]
-            plaintext[(j * (num_loops - 1)) + i] = temp
+        j = 0
+        while j < num_loops:               #I believe it is inside of this while loop
+            # print("j = {}".format(j)) # DEBUG j
+            temp = plaintext[(j * (9)) + 4]
+            plaintext[(j * (9)) + 4] = plaintext[(j * (9)) + i]
+            plaintext[(j * (9)) + i] = temp
             print(plaintext) # DEBUG matrix per shift
             j += 1
     return plaintext
@@ -101,7 +107,7 @@ def shift_calc(time):
     return shift
 
 # Main
-plaintext = "plaintext"
+plaintext = "Hello, world!"
 time = "8:59:37"
 shift = shift_calc(time)
 print("Shift: {}".format(shift)) # DEBUG shift
