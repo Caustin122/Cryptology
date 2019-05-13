@@ -114,8 +114,6 @@ print("".join(pet)) # DEBUG output
 #encrypted_text = big_encrypt(pet,shift)
 #print(encrypted_text)
 
-
-
 # Notes:
 
 # If the plan is to have a 3x3 matrix (9 characters), 
