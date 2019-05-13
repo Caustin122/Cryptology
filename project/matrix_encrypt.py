@@ -12,11 +12,11 @@ def little_encrypt(plaintext, shift):   #the issue is somewhere in here
 
     for i in shift:
         j = 0
-        while j < num_loops:               #I believe it is inside of this while loop
+        while j < num_loops:
             # print("j = {}".format(j)) # DEBUG j
-            temp = plaintext[(j * (9)) + 4]
-            plaintext[(j * (9)) + 4] = plaintext[(j * (9)) + i]
-            plaintext[(j * (9)) + i] = temp
+            temp = plaintext[(j * 9) + 4]
+            plaintext[(j * 9) + 4] = plaintext[(j * 9) + i]
+            plaintext[(j * 9) + i] = temp
             print(plaintext) # DEBUG matrix per shift
             j += 1
     return plaintext
