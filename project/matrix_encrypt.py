@@ -22,7 +22,11 @@ def little_encrypt(plaintext, shift):   #the issue is somewhere in here
     return plaintext
 
 # For the greater array
-def big_encrypt(pet, shift):
+def big_encrypt(plaintext, shift):
+    # Split plaintext into chunks of 9
+    # Split those into smaller chunks of 9 if possible
+
+    # If a layer doesn't have a full chunk of 9, don't touch it (hanging characters/lists)
     pass
 
 # Padding where needed
