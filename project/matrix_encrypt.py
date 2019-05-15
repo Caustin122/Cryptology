@@ -122,10 +122,10 @@ print("".join(pet)) # DEBUG output
 
 # Notes:
 
-# If the plan is to have a 3x3 matrix (9 characters), 
+# If the plan is to have a 3x3 matrix (9 characters),
 # we would have to pass substrings of 9 characters through
 # the little_encrypt function. Those can then be recompiled
-# and passed into the big_encrypt. 
+# and passed into the big_encrypt.
 
 # Are we setting a hard cutt-off at 81 characters per message?
 # Otherwise, se may need yet another layer to the matrix.
