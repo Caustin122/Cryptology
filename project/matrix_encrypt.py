@@ -1,8 +1,14 @@
 # Matrix Encryption
 # by: The Epidemics
+from math import log, floor
+
+def create_matrices(plaintext):
+    NUM_LAYERS = floor(log(len(plaintext), 9)) # Find the number of layers in the greater matrix
+    return NUM_LAYERS
+
 
 # For the 3x3 array
-def little_encrypt(plaintext, shift):   #the issue is somewhere in here
+def swap(plaintext, shift):   #the issue is somewhere in here
     plaintext = list(plaintext)
     num_loops = int(len(plaintext) / 9)
 
@@ -22,11 +28,7 @@ def little_encrypt(plaintext, shift):   #the issue is somewhere in here
     return plaintext
 
 # For the greater array
-def big_encrypt(plaintext, shift):
-    # Split plaintext into chunks of 9
-    # Split those into smaller chunks of 9 if possible
-
-    # If a layer doesn't have a full chunk of 9, don't touch it (hanging characters/lists)
+def big_encrypt(plaintext, shift): # If a layer doesn't have a full chunk of 9, don't touch it (hanging characters/lists)
     pass
 
 # Padding where needed
@@ -117,19 +119,18 @@ shift = shift_calc(time)
 print("Shift: {}".format(shift)) # DEBUG shift
 plaintext = pad(plaintext)
 print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
-pet = little_encrypt(plaintext, shift)
+print("Number of layers: {}".format(create_matrices(plaintext)))
+pet = swap(plaintext, shift)
 print("Output: {}".format(pet)) # DEBUG output format
 print("".join(pet)) # DEBUG output
 
-#encrypted_text = big_encrypt(pet,shift)
-#print(encrypted_text)
-
 # Notes:
-
 # If the plan is to have a 3x3 matrix (9 characters),
-# we would have to pass substrings of 9 characters through
-# the little_encrypt function. Those can then be recompiled
+# we would have to pass lists of 9 characters at a time through
+# the swap function. Those can then be recompiled
 # and passed into the big_encrypt.
 
-# Are we setting a hard cutt-off at 81 characters per message?
-# Otherwise, se may need yet another layer to the matrix.
+# Algorithms:
+# Number of loops per layer: floor(list/9)
+# Number of layers in the greater matrix: floor(log(list,9))
+# Navigating through each list
