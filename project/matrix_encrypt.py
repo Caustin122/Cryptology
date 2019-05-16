@@ -1,16 +1,16 @@
 # Matrix Encryption
 # by: The Epidemics
+
 from math import log, floor
 
 def create_matrices(plaintext):
     NUM_LAYERS = floor(log(len(plaintext), 9)) # Find the number of layers in the greater matrix
     return NUM_LAYERS
 
-
 # For the 3x3 array
 def swap(plaintext, shift):   #the issue is somewhere in here
     plaintext = list(plaintext)
-    num_loops = int(len(plaintext) / 9)
+    num_loops = floor(len(plaintext) / 9)
 
     # print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
     # print("Shift: {}".format(shift)) # DEBUG shift
@@ -23,12 +23,12 @@ def swap(plaintext, shift):   #the issue is somewhere in here
             temp = plaintext[(j * 9) + 4]
             plaintext[(j * 9) + 4] = plaintext[(j * 9) + i]
             plaintext[(j * 9) + i] = temp
-            print(plaintext) # DEBUG matrix per shift
+            # print(plaintext) # DEBUG matrix per shift
             j += 1
     return plaintext
 
 # For the greater array
-def big_encrypt(plaintext, shift): # If a layer doesn't have a full chunk of 9, don't touch it (hanging characters/lists)
+def rotate(plaintext, shift): # If a layer doesn't have a full chunk of 9, don't touch it (hanging characters/lists)
     pass
 
 # Padding where needed
@@ -116,19 +116,21 @@ def shift_calc(time):
 plaintext = "Hello, world!"
 time = "8:59:37"
 shift = shift_calc(time)
-print("Shift: {}".format(shift)) # DEBUG shift
+# print("Shift: {}".format(shift)) # DEBUG shift
 plaintext = pad(plaintext)
-print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
+# print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
 print("Number of layers: {}".format(create_matrices(plaintext)))
 pet = swap(plaintext, shift)
-print("Output: {}".format(pet)) # DEBUG output format
+# print("Output: {}".format(pet)) # DEBUG output format
 print("".join(pet)) # DEBUG output
 
 # Notes:
 # If the plan is to have a 3x3 matrix (9 characters),
 # we would have to pass lists of 9 characters at a time through
 # the swap function. Those can then be recompiled
-# and passed into the big_encrypt.
+# and passed into the rotate.
+
+# Maybe consider using numpy? Dataframes might be useful.
 
 # Algorithms:
 # Number of loops per layer: floor(list/9)
