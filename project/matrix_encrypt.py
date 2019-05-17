@@ -3,27 +3,14 @@
 
 from math import log, floor, ceil
 
-
-
 def create_matrices(plaintext):
-    matrix = list()
-    NUM_LAYERS = floor(log(len(plaintext), 9)) # Find the number of layers in the greater matrixword
-    print(NUM_LAYERS)
+    matrix = list() # Initialize new list
+    NUM_LAYERS = floor(log(len(plaintext), 9))
     ITERATIONS = 9**NUM_LAYERS
-    print(ITERATIONS)
-    print(ceil(len(plaintext)/(9**NUM_LAYERS)))
-    print(plaintext[0:9])
-    for j in range(ceil(len(plaintext)/(9**NUM_LAYERS))):
-        matrix[j] = [plaintext[i:i+ITERATIONS] for i in range(0, len(plaintext), ITERATIONS)]
-        print(matrix[j])
+    # for j in range(ceil(len(plaintext)/(ITERATIONS))):
+    print(list(plaintext[0:9]))
+    matrix[0] = list(plaintext[0:9])
     return matrix
-
-# def make_layer(plaintext):
-#     matrix = list()
-#     NUM_LAYERS = floor(log(len(plaintext), 9)) # Find the number of layers in the greater matrixword
-#     ITERATIONS = 9**NUM_LAYERS
-
-
 
 # For the 3x3 array
 def swap(plaintext, shift):   #the issue is somewhere in here
@@ -136,7 +123,7 @@ time = "8:59:37"
 shift = shift_calc(time)
 # print("Shift: {}".format(shift)) # DEBUG shift
 plaintext = pad(plaintext)
-print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
+# print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
 print("Number of layers: {}".format(create_matrices(plaintext)))
 pet = swap(plaintext, shift)
 # print("Output: {}".format(pet)) # DEBUG output format
