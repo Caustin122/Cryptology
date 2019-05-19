@@ -137,6 +137,6 @@ NUM_LAYERS = floor(log(len(plaintext), 9))
 CURR_LAYER = 1
 ITERATIONS = 9**CURR_LAYER
 
-layer_1 = swap(plaintext, shift)
-for i in range(ceil(len(plaintext)/(ITERATIONS))):
-    layer_2[0] = layer_1[i:i]
+# layer_1 = swap(plaintext, shift)
+# for i in range(ceil(len(plaintext)/(ITERATIONS))):
+#     layer_2[0] = layer_1[i:i]
