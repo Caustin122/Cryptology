@@ -115,5 +115,5 @@ for n in string_length:
         else:
             swapped_text.append(broken_text[i:i+9])
         print(swapped_text)
-        text.join(swapped_text)
+        text.join(str(swapped_text))
 print(text)
