@@ -106,14 +106,14 @@ print string_length
 
 for n in string_length:
     broken_text = []
-    for i in range(0, len(text), n):        #splits the text into chunks of the correct length
+    for i in range(0, len(text), n):
         broken_text.append(text[i:i+n])
-    for i in range(0, len(broken_text), 9): #performs the shift on each complete set, for some reason it is leaving off any inconplete sets
+    for i in range(0, len(broken_text), 9):
         swapped_text = []
         if(len(broken_text[i:i+9])) == 9:
             swapped_text.append(swap(broken_text[i:i+9], shift))
         else:
-            swapped_text.append(set)
+            swapped_text.append(broken_text[i:i+9])
         print swapped_text
-        text = "".join(swapped_text)      #i'm having issues with the join part but ive checked everything else and it seems to be looking good
+        text.join(swapped_text)
 print text
