@@ -2,4 +2,4 @@
 You are provided another encrypted message.
 It seems to be much longer than the earlier messages.
 What could it be?
-Bring the decrypted messages to the white team for further instructions.
+Bring the decrypted message to the white team for your next key.
