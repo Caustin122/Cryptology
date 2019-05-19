@@ -102,18 +102,21 @@ time = "8:59:37"
 shift = shift_calc(time)
 text = pad(plaintext)
 string_length = loop_calc(text)
-print(string_length)
 
 for n in string_length:
     broken_text = []
     for i in range(0, len(text), n):
         broken_text.append(text[i:i+n])
+    swapped_text = []
     for i in range(0, len(broken_text), 9):
-        swapped_text = []
         if(len(broken_text[i:i+9])) == 9:
             swapped_text.append(swap(broken_text[i:i+9], shift))
         else:
-            swapped_text.append(broken_text[i:i+9])
-        print(swapped_text)
-        text.join(str(swapped_text))
+            swapped_text.append(broken_text[i:])
+    text_list = []
+    text = ""
+    for i in swapped_text:
+        text_list = text_list + i
+    print(text_list)
+    text.join(text_list)
 print(text)
