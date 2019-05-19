@@ -102,7 +102,7 @@ time = "8:59:37"
 shift = shift_calc(time)
 text = pad(plaintext)
 string_length = loop_calc(text)
-print string_length
+print(string_length)
 
 for n in string_length:
     broken_text = []
@@ -114,6 +114,6 @@ for n in string_length:
             swapped_text.append(swap(broken_text[i:i+9], shift))
         else:
             swapped_text.append(set)
-        print swapped_text
+        print(swapped_text)
         text = "".join(swapped_text)      #i'm having issues with the join part but ive checked everything else and it seems to be looking good
-print text
+print(text)
