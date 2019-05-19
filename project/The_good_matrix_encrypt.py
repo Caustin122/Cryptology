@@ -113,7 +113,7 @@ for n in string_length:
         if(len(broken_text[i:i+9])) == 9:
             swapped_text.append(swap(broken_text[i:i+9], shift))
         else:
-            swapped_text.append(set)
+            swapped_text.append(broken_text[i:])
         print(swapped_text)
         text = "".join(swapped_text)      #i'm having issues with the join part but ive checked everything else and it seems to be looking good
 print(text)
