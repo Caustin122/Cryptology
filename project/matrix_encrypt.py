@@ -4,28 +4,22 @@
 from sys import stdin
 from math import log, floor, ceil
 
-# For the 3x3 array
-def swap(plaintext, shift, ITERATIONS):   #the issue is somewhere in here
-    # print("Iteration: {}".format(ITERATIONS))
+def swap(plaintext, shift, ITERATIONS):
     plaintext = list(plaintext)
     num_loops = floor(len(plaintext) / ITERATIONS)
+    # print(num_loops)
     inc = int(ITERATIONS/9)
     # print(inc)
-
     for i in shift:
         j = 0
         while j < num_loops:
-            # print("j = {}".format(j)) # DEBUG j
-            temp = plaintext[(j*ITERATIONS)+4:(j*ITERATIONS)+4+inc]
-            plaintext[(j*ITERATIONS)+4:(j*ITERATIONS)+4+inc] = plaintext[(j*ITERATIONS)+i:(j*ITERATIONS)+i+inc]
-            plaintext[(j*ITERATIONS)+i:(j*ITERATIONS)+i+inc] = temp
-            # print(plaintext) # DEBUG matrix per shift
+            temp = plaintext[(j*ITERATIONS)+(4*inc):(j*ITERATIONS)+(4*inc)+inc]
+            # print(''.join(temp))
+            plaintext[(j*ITERATIONS)+(4*inc):(j*ITERATIONS)+(4*inc)+inc] = plaintext[(j*ITERATIONS)+(i*inc):(j*ITERATIONS)+(i*inc)+inc]
+            plaintext[(j*ITERATIONS)+(i*inc):(j*ITERATIONS)+(i*inc)+inc] = temp
+            # print(''.join(plaintext)) # DEBUG matrix per shift
             j += 1
     return plaintext
-
-# For the greater array
-def rotate(plaintext, shift): # If a layer doesn't have a full chunk of 9, don't touch it (hanging characters/lists)
-    pass
 
 # Padding where needed
 def pad(plaintext):
@@ -111,7 +105,7 @@ def shift_calc(time):
 # Main
 # plaintext = "Hello, world!"
 plaintext = stdin.read()
-time = "8:59:37"
+time = "2:59:37"
 shift = shift_calc(time)
 # print("Shift: {}".format(shift)) # DEBUG shift
 plaintext = pad(plaintext)
@@ -119,14 +113,15 @@ plaintext = pad(plaintext)
 
 ciphertext = ""
 NUM_LAYERS = floor(log(len(plaintext), 9))
+# print("num_layers: {}".format(NUM_LAYERS))
 CURR_LAYER = 1
 
 # print(NUM_LAYERS)
 
 while CURR_LAYER <= NUM_LAYERS:
     ITERATIONS = 9**CURR_LAYER
-    ciphertext = swap(plaintext, shift, ITERATIONS)
+    plaintext = swap(plaintext, shift, ITERATIONS)
     CURR_LAYER += 1
 
-a = ''.join(ciphertext)
+a = ''.join(plaintext)
 print(a)
