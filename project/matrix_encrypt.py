@@ -1,33 +1,24 @@
 # Matrix Encryption
 # by: The Epidemics
 
+from sys import stdin
 from math import log, floor, ceil
 
-# def create_matrices(plaintext):
-#     matrix = list() # Initialize new list
-#     NUM_LAYERS = floor(log(len(plaintext), 9))
-#     ITERATIONS = 9**NUM_LAYERS
-#     # for j in range(ceil(len(plaintext)/(ITERATIONS))):
-#     print(list(plaintext[0:9]))
-#     matrix[0] = list(plaintext[0:9])
-#     return matrix
-
 # For the 3x3 array
-def swap(plaintext, shift):   #the issue is somewhere in here
+def swap(plaintext, shift, ITERATIONS):   #the issue is somewhere in here
+    print("Iteration: {}".format(ITERATIONS))
     plaintext = list(plaintext)
-    num_loops = floor(len(plaintext) / 9)
-
-    # print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
-    # print("Shift: {}".format(shift)) # DEBUG shift
-    # print("Number of Loops: {}".format(num_loops)) # DEBUG num_loops
+    num_loops = floor(len(plaintext) / ITERATIONS)
+    inc = int(ITERATIONS/9)
+    print(inc)
 
     for i in shift:
         j = 0
         while j < num_loops:
             # print("j = {}".format(j)) # DEBUG j
-            temp = plaintext[(j * 9) + 4]
-            plaintext[(j * 9) + 4] = plaintext[(j * 9) + i]
-            plaintext[(j * 9) + i] = temp
+            temp = plaintext[(j*ITERATIONS)+4:(j*ITERATIONS)+4+inc]
+            plaintext[(j*ITERATIONS)+4:(j*ITERATIONS)+4+inc] = plaintext[(j*ITERATIONS)+i:(j*ITERATIONS)+i+inc]
+            plaintext[(j*ITERATIONS)+i:(j*ITERATIONS)+i+inc] = temp
             # print(plaintext) # DEBUG matrix per shift
             j += 1
     return plaintext
@@ -118,25 +109,27 @@ def shift_calc(time):
     return shift
 
 # Main
-plaintext = "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
+# plaintext = "Hello, world!"
+plaintext = stdin.read()
 time = "8:59:37"
 shift = shift_calc(time)
-# print("Shift: {}".format(shift)) # DEBUG shift
+print("Shift: {}".format(shift)) # DEBUG shift
 plaintext = pad(plaintext)
-# print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
+print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
 
-# Up to this point, everything works
-
-
-# print("Number of layers: {}".format(create_matrices(plaintext)))
-# pet = swap(plaintext, shift)
-# # print("Output: {}".format(pet)) # DEBUG output format
-# print("".join(pet)) # DEBUG output
-
+ciphertext = ""
 NUM_LAYERS = floor(log(len(plaintext), 9))
 CURR_LAYER = 1
-ITERATIONS = 9**CURR_LAYER
 
-# layer_1 = swap(plaintext, shift)
-# for i in range(ceil(len(plaintext)/(ITERATIONS))):
-#     layer_2[0] = layer_1[i:i]
+print(NUM_LAYERS)
+
+while CURR_LAYER <= NUM_LAYERS:
+    ITERATIONS = 9**CURR_LAYER
+    ciphertext = str(swap(plaintext, shift, ITERATIONS))
+    CURR_LAYER += 1
+
+output = ""
+for k in ciphertext:
+    output = output + "".join(k)
+
+print(output)
