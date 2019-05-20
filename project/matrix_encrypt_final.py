@@ -7,21 +7,16 @@ from math import log, floor, ceil
 def swap(plaintext, shift, ITERATIONS):
     plaintext = list(plaintext)
     num_loops = floor(len(plaintext) / ITERATIONS)
-    # print(num_loops)
     inc = int(ITERATIONS/9)
-    # print(inc)
     for i in shift:
         j = 0
         while j < num_loops:
             temp = plaintext[(j*ITERATIONS)+(4*inc):(j*ITERATIONS)+(4*inc)+inc]
-            # print(''.join(temp))
             plaintext[(j*ITERATIONS)+(4*inc):(j*ITERATIONS)+(4*inc)+inc] = plaintext[(j*ITERATIONS)+(i*inc):(j*ITERATIONS)+(i*inc)+inc]
             plaintext[(j*ITERATIONS)+(i*inc):(j*ITERATIONS)+(i*inc)+inc] = temp
-            # print(''.join(plaintext)) # DEBUG matrix per shift
             j += 1
     return plaintext
 
-# Padding where needed
 def pad(plaintext):
     padding = "#"
     n = len(plaintext)%9
@@ -32,7 +27,6 @@ def pad(plaintext):
             num_pad -= 1
     return plaintext
 
-# Calculating the shift
 def shift_calc(time):
     time = time.split(":")
     hour = int(time[0])
@@ -103,25 +97,15 @@ def shift_calc(time):
     return shift
 
 # Main
-# plaintext = "Hello, world!"
 plaintext = stdin.read()
 time = "2:59:37"
 shift = shift_calc(time)
-# print("Shift: {}".format(shift)) # DEBUG shift
 plaintext = pad(plaintext)
-# print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
-
 ciphertext = ""
 NUM_LAYERS = floor(log(len(plaintext), 9))
-# print("num_layers: {}".format(NUM_LAYERS))
 CURR_LAYER = 1
-
-# print(NUM_LAYERS)
-
 while CURR_LAYER <= NUM_LAYERS:
     ITERATIONS = 9**CURR_LAYER
     plaintext = swap(plaintext, shift, ITERATIONS)
     CURR_LAYER += 1
-
-a = ''.join(plaintext)
-print(a)
+print(''.join(plaintext))
