@@ -6,11 +6,11 @@ from math import log, floor, ceil
 
 # For the 3x3 array
 def swap(plaintext, shift, ITERATIONS):   #the issue is somewhere in here
-    print("Iteration: {}".format(ITERATIONS))
+    # print("Iteration: {}".format(ITERATIONS))
     plaintext = list(plaintext)
     num_loops = floor(len(plaintext) / ITERATIONS)
     inc = int(ITERATIONS/9)
-    print(inc)
+    # print(inc)
 
     for i in shift:
         j = 0
@@ -113,23 +113,20 @@ def shift_calc(time):
 plaintext = stdin.read()
 time = "8:59:37"
 shift = shift_calc(time)
-print("Shift: {}".format(shift)) # DEBUG shift
+# print("Shift: {}".format(shift)) # DEBUG shift
 plaintext = pad(plaintext)
-print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
+# print("Plaintext: {}".format(plaintext)) # DEBUG plaintext
 
 ciphertext = ""
 NUM_LAYERS = floor(log(len(plaintext), 9))
 CURR_LAYER = 1
 
-print(NUM_LAYERS)
+# print(NUM_LAYERS)
 
 while CURR_LAYER <= NUM_LAYERS:
     ITERATIONS = 9**CURR_LAYER
-    ciphertext = str(swap(plaintext, shift, ITERATIONS))
+    ciphertext = swap(plaintext, shift, ITERATIONS)
     CURR_LAYER += 1
 
-output = ""
-for k in ciphertext:
-    output = output + "".join(k)
-
-print(output)
+a = ''.join(ciphertext)
+print(a)
