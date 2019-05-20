@@ -98,7 +98,7 @@ def shift_calc(time):
 
 # Main
 plaintext = stdin.read()
-time = "2:59:37"
+time = "11:20:05"
 shift = shift_calc(time)
 plaintext = pad(plaintext)
 ciphertext = ""
