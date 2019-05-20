@@ -97,8 +97,8 @@ def shift_calc(time):
 
 
 # Main
-plaintext = "Hello, world!"
-time = "8:59:37"
+plaintext = "a23456789b23456789c23456789d23456789e23456789f23456789g23456789h23456789i23456789j23456789k23456789l23456789m23456789n23456789o23456789p23456789q23456789r23456789s23456789t23456789u23456789v23456789w23456789x23456789y23456789z23456789"
+time = "12:37:00"
 shift = shift_calc(time)
 text = pad(plaintext)
 string_length = loop_calc(text)
@@ -116,4 +116,4 @@ for n in string_length:
     text = ""
     for i in swapped_text:
         text = text + "".join(i)
-    print(text)
+    print text
