@@ -113,10 +113,7 @@ for n in string_length:
             swapped_text.append(swap(broken_text[i:i+9], shift))
         else:
             swapped_text.append(broken_text[i:])
-    text_list = []
     text = ""
     for i in swapped_text:
-        text_list = text_list + i
-    print(text_list)
-    text.join(text_list)
-print(text)
+        text = text + "".join(i)
+    print text
