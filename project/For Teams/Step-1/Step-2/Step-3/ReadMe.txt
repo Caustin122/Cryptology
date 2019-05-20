@@ -1,4 +1,3 @@
-# Step 3
 You have been provided a very long, encrypted file.
 Decrypt this file.
 When you have found the final message:
