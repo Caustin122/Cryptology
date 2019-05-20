@@ -116,4 +116,4 @@ for n in string_length:
     text = ""
     for i in swapped_text:
         text = text + "".join(i)
-    print text
+    print(text)
